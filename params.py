@@ -1,8 +1,8 @@
 # params.py
 import numpy as np
 
-# Tillståndsordning, används av både ODE och SSA
-STATE_NAMES = ["DA", "DR", "DA_p", "DR_p", "MA", "MR", "A", "R", "C"]
+# Tillståndsordning, används av både ODE och SSA (samma ordning som ekv. [1] i artikeln/uppgiften)
+STATE_NAMES = ["DA", "DR", "DA_p", "DR_p", "MA", "A", "MR", "R", "C"]
 IDX = {name: i for i, name in enumerate(STATE_NAMES)}
 
 # Modellparametrar (enheter enligt uppgiften, h^-1 resp. mol^-1 h^-1)
@@ -25,4 +25,3 @@ def initial_state():
 
 T_END = 200.0   # timmar
 SEED = 42
-
