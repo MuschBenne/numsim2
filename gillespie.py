@@ -18,6 +18,11 @@ def ssa(prop, stoch, X0, tspan, params):
             break
         # slumpar väntetiden till nästa reaktion (exponentialfördelad), 1-random för att slippa log(0)
         t += -np.log(1-random.random()) / a0
+        # nästa reaktion hamnar efter sluttiden, så tillståndet är oförändrat fram till tspan[1]
+        if t > tspan[1]:
+            tlist.append(tspan[1])
+            Xlist.append(X)
+            break
         # lägg reaktionerna efter varandra som bitar på en linjal och kasta en pil, biten den landar i är reaktionen som sker
         # pilen kastas över cumsum[-1] och inte a0, annars kan avrundning göra att den hamnar utanför linjalen
         cre = np.cumsum(re)

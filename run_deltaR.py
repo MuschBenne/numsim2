@@ -10,7 +10,8 @@ from oscillator_stoch import stoch, prop
 NEW_PARAMS = {**PARAMS, "deltaR": 0.08}
 
 # ODE Solution
-ode_sol = solve_ivp(ode_func, [0, T_END], initial_state(), args=(NEW_PARAMS,), method="LSODA")
+ode_sol = solve_ivp(ode_func, [0, T_END], initial_state(), args=(NEW_PARAMS,), method="LSODA",
+                    rtol=1e-6, atol=1e-9)  # standardtoleransen ger för få punkter, kantiga toppar
 
 plt.figure()
 plt.plot(ode_sol.t, ode_sol.y[IDX["A"]], label="A")
